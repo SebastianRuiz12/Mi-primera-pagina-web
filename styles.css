@@ -1,0 +1,240 @@
+/* Fondo tipo Matrix */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #000 url('imagenes/matrix.gif') center center fixed;
+    background-size: cover;
+    position: relative;
+}
+
+/* Capa oscura para que se lea bien el texto */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: -1;
+}
+
+/* HEADER */
+header {
+    background: rgba(10, 75, 120, 0.95);
+    color: white;
+    padding: 25px 15px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+header p {
+    margin: 5px 0 0;
+}
+
+/* TARJETAS GENERALES (Habilidades, Contacto, Juego) */
+.card {
+    background: rgba(255, 255, 255, 0.93);
+    margin: 20px auto;
+    padding: 22px 24px;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+}
+
+.card h2 {
+    color: #0a4b78;
+    margin-top: 0;
+}
+
+.card ul {
+    padding-left: 20px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 15px;
+    background: rgba(6, 50, 77, 0.95);
+    color: white;
+    margin-top: 30px;
+}
+
+/* ========================
+   BANNERS EXPANDIBLES
+   ======================== */
+
+.banners-wrapper {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Tarjeta base de cada banner */
+.banner-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 18px;
+    padding: 18px 22px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.banner-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.55);
+}
+
+/* Parte superior: imagen + título + descripción corta */
+.banner-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.banner-image {
+    flex: 0 0 32%;
+}
+
+.banner-image img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+}
+
+.banner-text {
+    flex: 1;
+}
+
+.banner-text h2 {
+    margin: 0 0 6px 0;
+    color: #0a4b78;
+    font-size: 1.2rem;
+}
+
+.banner-text p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Contenido que se expande */
+.banner-content {
+    margin-top: 18px;
+    padding-top: 12px;
+    border-top: 1px solid #ddd;
+    display: none;           /* Oculto por defecto */
+}
+
+.banner-content h3 {
+    margin-top: 0;
+    color: #0a4b78;
+}
+
+.banner-content ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+/* Banner abierto */
+.banner-card.active .banner-content {
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    .banner-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .banner-image {
+        width: 100%;
+    }
+
+    .banner-text {
+        text-align: center;
+    }
+}
+
+/* ========================
+   MINI JUEGO TIC
+   ======================== */
+
+.juego {
+    text-align: center;
+}
+
+.btn-jugar,
+.btn-siguiente,
+.option-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    background: #0a4b78;
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 5px;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-jugar:hover,
+.btn-siguiente:hover,
+.option-btn:hover {
+    background: #0f699f;
+    transform: translateY(-1px);
+}
+
+.btn-jugar:active,
+.btn-siguiente:active,
+.option-btn:active {
+    transform: translateY(1px);
+}
+
+.game-area {
+    margin-top: 15px;
+}
+
+.game-question {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.game-options {
+    margin-bottom: 10px;
+}
+
+.game-feedback {
+    margin-top: 8px;
+}
+
+.game-feedback.correcto {
+    color: green;
+}
+
+.game-feedback.incorrecto {
+    color: red;
+}
+
+.game-score {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Sitio Web Personal - Michael Campos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Michael Sebastian Campos Ruiz</h1>
+    <p> APRENDIZ DIGITAL (SENA)</p>
+</header>
+
+<!-- BANNERS EXPANDIBLES -->
+<section class="banners-wrapper">
+
+    <!-- BANNER 1: HERRAMIENTAS TIC -->
+    <div class="banner-card expandable" data-audio="audio-herramientas">
+        <div class="banner-header">
+            <div class="banner-image">
+                <img src="imagenes/herramientasTIC.jpeg" alt="Herramientas TIC">
+            </div>
+            <div class="banner-text">
+                <h2>Herramientas TIC</h2>
+                <p>Conoce las herramientas digitales que uso en mi proceso de formación.</p>
+            </div>
+        </div>
+
+        <!-- CONTENIDO QUE SE EXPANDE -->
+        <div class="banner-content">
+            <h3>Herramientas TIC</h3>
+            <p>Utilizo diferentes herramientas TIC para apoyar mi proceso de aprendizaje y trabajo:</p>
+            <ul>
+                <li>Plataformas educativas: Moodle, Classroom.</li>
+                <li>Herramientas de comunicación: Meet, Zoom, WhatsApp Web.</li>
+                <li>Gestión de archivos en la nube: Google Drive, OneDrive.</li>
+                <li>Creación de contenido: Canva, Blogger.</li>
+            </ul>
+        </div>
+
+        <!-- AUDIO ASOCIADO -->
+        <audio id="audio-herramientas" class="banner-audio" src="audio/herramientas_tic.mp3"></audio>
+    </div>
+
+    <!-- BANNER 2 -->
+    <div class="banner-card expandable" data-audio="audio-navegadores">
+        <div class="banner-header">
+            <div class="banner-image">
+                <img src="imagenes/Navegadores,redes y correos.jpeg" alt="Navegadores, Redes y Correo">
+            </div>
+            <div class="banner-text">
+                <h2>Navegadores, Redes Sociales y Correo</h2>
+                <p>Accedo, comparto y me comunico usando diferentes servicios en línea.</p>
+            </div>
+        </div>
+
+        <div class="banner-content">
+            <h3>Navegadores, Redes Sociales y Correo</h3>
+            <ul>
+                <li><strong>Navegadores:</strong> Chrome, Firefox, Edge.</li>
+                <li><strong>Redes sociales:</strong> Facebook, Instagram, LinkedIn.</li>
+                <li><strong>Correos electrónicos:</strong> Gmail, Outlook.</li>
+            </ul>
+        </div>
+
+        <audio id="audio-navegadores" class="banner-audio" src="audio/navegadores_redes.mp3"></audio>
+    </div>
+
+    <!-- BANNER 3 -->
+    <div class="banner-card expandable" data-audio="audio-blogs">
+        <div class="banner-header">
+            <div class="banner-image">
+                <img src="imagenes/Blog y multimedia.png" alt="Blogs y Multimedia">
+            </div>
+            <div class="banner-text">
+                <h2>Blogs, Cómics y Multimedia</h2>
+                <p>Espacios para crear contenido, aprender y expresarme de forma creativa.</p>
+            </div>
+        </div>
+
+        <div class="banner-content">
+            <h3>Blogs, Cómics y Multimedia</h3>
+            <ul>
+                <li><strong>Blogs:</strong> Blogger, WordPress.</li>
+                <li><strong>Cómics y gráficos:</strong> Pixton, Canva.</li>
+                <li><strong>Video y fotografía:</strong> YouTube, Vimeo, Flickr.</li>
+            </ul>
+        </div>
+
+        <audio id="audio-blogs" class="banner-audio" src="audio/blogs_multimedia.mp3"></audio>
+    </div>
+
+</section>
+
+<main>
+
+    <!-- MINI JUEGO TIC -->
+    <section class="card juego">
+        <h2>Mini juego TIC</h2>
+        <p>Haz clic en <strong>Jugar</strong> y responde las preguntas sobre herramientas TIC.</p>
+        <button id="btn-jugar" class="btn-jugar">Jugar</button>
+
+        <div id="game-area" class="game-area hidden">
+            <p id="game-question" class="game-question"></p>
+            <div id="game-options" class="game-options"></div>
+            <p id="game-feedback" class="game-feedback"></p>
+            <p id="game-score" class="game-score"></p>
+            <button id="btn-siguiente" class="btn-siguiente hidden">Siguiente pregunta</button>
+        </div>
+    </section>
+
+    <section class="card habilidades">
+        <h2>Habilidades</h2>
+        <ul>
+            <li>Desarrollo web básico (HTML, CSS, JavaScript).</li>
+            <li>Manejo de herramientas TIC y ofimáticas.</li>
+            <li>Comunicación efectiva y trabajo en equipo.</li>
+        </ul>
+    </section>
+
+    <section class="card contacto">
+        <h2>Contacto</h2>
+        <p>Correo: sebastian20252@gmail.com</p>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2025 - Sitio Web Personal | Michael Sebastian Campos Ruiz</p>
+</footer>
+
+<!-- SCRIPT: EXPANDIR BANNERS + AUDIO + MINI JUEGO -->
+<script>
+    // ===== BANNERS: expandir + sonar audio =====
+    const expandableBanners = document.querySelectorAll('.banner-card.expandable');
+    const allAudios = document.querySelectorAll('.banner-audio');
+
+    expandableBanners.forEach(card => {
+        card.addEventListener('click', () => {
+            const isActive = card.classList.contains('active');
+
+            // cerrar todos los banners
+            expandableBanners.forEach(c => c.classList.remove('active'));
+
+            // pausar todos los audios
+            allAudios.forEach(a => { a.pause(); a.currentTime = 0; });
+
+            if (!isActive) {
+                card.classList.add('active');
+
+                // reproducir audio de este banner
+                const audioId = card.getAttribute('data-audio');
+                const audio = document.getElementById(audioId);
+                if (audio) {
+                    audio.play().catch(() => {});
+                }
+
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // ===== MINI JUEGO TIC =====
+    const questions = [
+        {
+            question: "¿Cuál de estas es una plataforma educativa?",
+            options: ["Instagram", "Moodle", "Gmail"],
+            answer: "Moodle"
+        },
+        {
+            question: "¿Qué tipo de herramienta es Google Chrome?",
+            options: ["Navegador", "Red social", "Editor de texto"],
+            answer: "Navegador"
+        },
+        {
+            question: "¿Cuál de estas se usa principalmente para enviar correos?",
+            options: ["Outlook", "YouTube", "Canva"],
+            answer: "Outlook"
+        },
+        {
+            question: "¿Qué tipo de contenido se comparte sobre todo en YouTube?",
+            options: ["Documentos de texto", "Videos", "Hojas de cálculo"],
+            answer: "Videos"
+        }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const btnJugar = document.getElementById('btn-jugar');
+    const gameArea = document.getElementById('game-area');
+    const gameQuestion = document.getElementById('game-question');
+    const gameOptions = document.getElementById('game-options');
+    const gameFeedback = document.getElementById('game-feedback');
+    const gameScore = document.getElementById('game-score');
+    const btnSiguiente = document.getElementById('btn-siguiente');
+
+    btnJugar.addEventListener('click', () => {
+        score = 0;
+        currentQuestion = 0;
+        gameArea.classList.remove('hidden');
+        btnSiguiente.classList.add('hidden');
+        gameFeedback.textContent = "";
+        gameScore.textContent = "";
+        loadQuestion();
+    });
+
+    function loadQuestion() {
+        const q = questions[currentQuestion];
+        gameQuestion.textContent = q.question;
+        gameOptions.innerHTML = "";
+
+        q.options.forEach(option => {
+            const btn = document.createElement('button');
+            btn.textContent = option;
+            btn.classList.add('option-btn');
+            btn.addEventListener('click', () => checkAnswer(option));
+            gameOptions.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selected) {
+        const q = questions[currentQuestion];
+        if (selected === q.answer) {
+            score++;
+            gameFeedback.textContent = "✔ ¡Correcto!";
+            gameFeedback.classList.add('correcto');
+            gameFeedback.classList.remove('incorrecto');
+        } else {
+            gameFeedback.textContent = "✘ Incorrecto. La respuesta correcta es: " + q.answer;
+            gameFeedback.classList.add('incorrecto');
+            gameFeedback.classList.remove('correcto');
+        }
+
+        // desactivar botones
+        const buttons = document.querySelectorAll('.option-btn');
+        buttons.forEach(b => b.disabled = true);
+
+        if (currentQuestion < questions.length - 1) {
+            btnSiguiente.classList.remove('hidden');
+        } else {
+            gameScore.textContent = "Puntaje final: " + score + " de " + questions.length;
+        }
+    }
+
+    btnSiguiente.addEventListener('click', () => {
+        currentQuestion++;
+        gameFeedback.textContent = "";
+        btnSiguiente.classList.add('hidden');
+        loadQuestion();
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
